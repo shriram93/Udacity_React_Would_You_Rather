@@ -1,0 +1,31 @@
+$teal-theme: #4db6ac;
+$grey-text: #616161;
+.navbar {
+    nav {
+        border-bottom: 2px solid $teal-theme;
+        background: #fff;
+        color: $grey-text;
+        font-weight: 600;
+
+        ul>li {
+            &.active {
+                background: $teal-theme;
+                a {
+                    color: #fff
+                }
+            }
+
+            a {                
+                color:$grey-text;
+            }
+        }
+
+        .user-name {
+            font-size: 1rem;
+            display: block;
+            padding: 0 15px;
+            margin: 0;
+        }
+    }
+
+}

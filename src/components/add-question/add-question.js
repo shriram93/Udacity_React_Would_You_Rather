@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleSaveNewQuestion } from '../../store/actions/questions';
-import '../../common-styles.scss';
 import './add-question.scss'
 
 

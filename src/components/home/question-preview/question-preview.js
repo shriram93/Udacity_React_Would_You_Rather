@@ -6,8 +6,8 @@ import { formatUsername } from '../../../utils/helpers'
 const QuestionPreview = ({ question }) => {
   return (
     < div className="custom__panel question-preview" >
-      <div className="custom__panel__header question-preview__header">
-        <label className="question-preview__header custom-label">{`${formatUsername(question.userName)} asks:`}</label>
+      <div className="custom__panel__header">
+        <label className="custom__panel__header__label custom-label">{`${formatUsername(question.userName)} asks:`}</label>
       </div>
       <div className="custom__panel__container question__container">
         <div className="question__container__avatar">

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import '../../common-styles.scss';
 import './login.scss'
 import { setAuthedUser } from '../../store/actions/authedUser'
 import { connect } from 'react-redux'
@@ -41,7 +40,7 @@ class LogIn extends Component {
             </div>
             <div className="login__container__content">
               <label className="login__container__content__label custom-label--medium">Sign in</label>
-              <div className="input-field login__container__content__dropdown">
+              <div className="login__container__content__dropdown">
                 <select onChange={e => this.setState(
                   {
                     selectedUser: e.target.value

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleAnswerQuestion } from '../../../store/actions/questions';
-import '../../../common-styles.scss'
+import { handleAnswerQuestion } from '../../../store/actions/questions'
 import './vote-question.scss'
 import { formatUsername } from '../../../utils/helpers'
 

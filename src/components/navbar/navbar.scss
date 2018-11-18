@@ -8,10 +8,10 @@ $grey-text: #616161;
     color: $grey-text;
     font-weight: 600;
 
-    ul>li {
+    ul > li {
       a.active {
         background: $teal-theme;
-        color: #fff
+        color: #fff;
       }
 
       a {
@@ -31,7 +31,7 @@ $grey-text: #616161;
 
       &__name {
         margin: 0;
-        padding-right: .5rem;
+        padding-right: 0.5rem;
       }
 
       &__avatar {
@@ -44,12 +44,11 @@ $grey-text: #616161;
 
     .logout {
       cursor: pointer;
-      transition: background-color .3s;
+      transition: background-color 0.3s;
 
       &:hover {
         background-color: rgba(0, 0, 0, 0.1);
       }
     }
   }
-
 }

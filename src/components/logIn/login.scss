@@ -1,6 +1,11 @@
 .login {
   .custom__panel {
     .login__container {
+      &__content {
+        &__content__label {
+          padding-top: 0.5rem;
+        }
+      }
       &__logo {
         img {
           width: 200px;

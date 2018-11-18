@@ -6,8 +6,11 @@
     margin-top: 0;
   }
 
-  &__header {
+  .custom__panel__header {
     text-align: left;
     padding-left: 1rem;
+    &__label {
+      padding: 0.5rem 0;
+    }
   }
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import '../../../common-styles.scss'
 import './vote-result.scss'
 import { formatUsername } from '../../../utils/helpers'
 

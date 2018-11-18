@@ -1,3 +1,4 @@
+import { showLoading, hideLoading } from 'react-redux-loading-bar'
 import { saveAnswerQuestionApi, saveNewQuestionApi } from '../../utils/api'
 import { saveAnswerUser, saveNewQuestionUser } from './users'
 
@@ -28,6 +29,7 @@ function saveNewQuestion(question) {
 
 export function handleAnswerQuestion({ questionId, answerOption }) {
   return (dispatch, getState) => {
+    dispatch(showLoading())
     const { authedUser } = getState();
     const userAnswer = {
       authedUser,
@@ -37,12 +39,14 @@ export function handleAnswerQuestion({ questionId, answerOption }) {
     return saveAnswerQuestionApi(userAnswer)
       .then(() => {
         dispatch(saveAnswerQuestion(userAnswer), saveAnswerUser(userAnswer))
+        dispatch(hideLoading())
       })
   }
 }
 
 export function handleSaveNewQuestion({ optionOneText, optionTwoText }) {
   return (dispatch, getState) => {
+    dispatch(showLoading())
     const { authedUser } = getState();
     const newQuestion = {
       author: authedUser,
@@ -52,6 +56,7 @@ export function handleSaveNewQuestion({ optionOneText, optionTwoText }) {
     return saveNewQuestionApi(newQuestion)
       .then((formattedQuestion) => {
         dispatch(saveNewQuestion(formattedQuestion), saveNewQuestionUser(formattedQuestion))
+        dispatch(hideLoading())
       })
   }
 }

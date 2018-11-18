@@ -1,28 +1,40 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { NavLink, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { setAuthedUser } from '../../store/actions/authedUser'
 import './navbar.scss'
+import { formatUsername } from '../../utils/helpers'
 
-class Navbar extends Component {
-    render() {
-        return (
-            <div className="navbar">
-                <nav>
-                    <div className="nav-wrapper">
-                        <div className="container">
-                            <ul id="nav-mobile" className="left hide-on-med-and-down">
-                                <li className="active"><a href="sass.html">Home</a></li>
-                                <li ><a href="badges.html">New Question</a></li>
-                                <li><a href="collapsible.html">Leader Board</a></li>
-                            </ul>
-                            <ul id="nav-mobile" className="right hide-on-med-and-down">
-                                <li><p className="user-name">Hello, Shriram</p></li>
-                                <li><a href="badges.html">Logout</a></li>
-                            </ul>   
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        );
-    }
+const Navbar = (props) => {
+	return (
+		<div className="navbar">
+			<nav>
+				<div className="nav-wrapper">
+					<div className="container">
+						<ul id="nav-mobile" className="left hide-on-med-and-down">
+							<li><NavLink exact to="/" activeClassName="active">Home</NavLink></li>
+							<li><NavLink to='/add' activeClassName="active">New Question</NavLink></li>
+							<li><NavLink to='/leaderboard' activeClassName="active">Leader Board</NavLink></li>
+						</ul>
+						{props.currentUser && <ul id="nav-mobile" className="right hide-on-med-and-down">
+							<li className="user-info">
+								<p className="user-info__name">{`Hello, ${formatUsername(props.currentUser.name)}`}</p>
+								<img className="user-info__avatar" src={`/${props.currentUser.avatarURL}`} alt="user-avatar" />
+								</li>
+							<li onClick={() => props.dispatch(setAuthedUser(''))}><p className="logout">Logout</p></li>
+						</ul>}
+					</div>
+				</div>
+			</nav>
+		</div>
+	);
 }
 
-export default Navbar
+const mapStatetoProps = ({ authedUser, users }) => {
+	const currentUser = users[authedUser]
+	return {
+		currentUser
+	}
+}
+
+export default withRouter(connect(mapStatetoProps)(Navbar))

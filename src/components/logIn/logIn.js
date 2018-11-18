@@ -1,40 +1,72 @@
 import React, { Component } from 'react'
+import '../../common-styles.scss';
 import './login.scss'
+import { setAuthedUser } from '../../store/actions/authedUser'
+import { connect } from 'react-redux'
 import M from 'materialize-css';
+import { formatUsername } from '../../utils/helpers'
 
 class LogIn extends Component {
-    componentDidMount() {
-        M.AutoInit();
+
+  componentDidMount() {
+    M.AutoInit();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.users.length !== prevProps.users.length) {
+      M.AutoInit();
     }
+  }
 
-    render() {
-        return (
-            <div className="login">
-                <div className="card-panel login__container">
-                    <div className="login__container__header">
-                        <h5>Welcome to the Would you Rather App!</h5>
-                        <p>Please sign in to continue</p>
-                    </div>
-                    <div className="login__container__body">
-                        <div className="log-in__container__body__logo">
+  state = {
+    selectedUser: ''
+  }
 
-                        </div>
-                        <div className="login__container__body__content">
-                        <label class="input-field login__container__body__content__label">Sign in</label>
-                            <div class="input-field login__container__body__content__dropdown">
-                                <select>
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  userLogin() {
+    this.props.dispatch(setAuthedUser(this.state.selectedUser));
+    this.props.history.push(`/`);
+  }
+
+  render() {
+    return (
+      <div className="login">
+        <div className="custom__panel">
+          <div className="custom__panel__header">
+            <label className="custom__panel__header__label custom-label--large">Welcome to the Would you Rather App!</label>
+            <label className="custom-label">Please sign in to continue</label>
+          </div>
+          <div className="custom__panel__container login__container">
+            <div className="login__container__logo">
+              <img src='/images/wouldyourather-banner.jpg' alt="wouldyourather-banner" />
             </div>
-        );
-    }
+            <div className="login__container__content">
+              <label className="login__container__content__label custom-label--medium">Sign in</label>
+              <div className="input-field login__container__content__dropdown">
+                <select onChange={e => this.setState(
+                  {
+                    selectedUser: e.target.value
+                  }
+                )} value={this.state.selectedUser}>
+                  <option value="" disabled>Choose your option</option>
+                  {this.props.users.map((user, index) =>
+                    <option key={index} value={user.id}>{formatUsername(user.name)}</option>
+                  )}
+                </select>
+              </div>
+              <button onClick={this.userLogin.bind(this)} className={`custom-button waves-effect waves-light btn login__container__content__button
+                            ${this.state.selectedUser.length > 0 ? '' : 'disabled'}`}>Sign in</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default LogIn
+const mapStatetoProps = ({ users }) => {
+  return {
+    users: Object.keys(users).map(i => users[i])
+  }
+}
+
+export default connect(mapStatetoProps)(LogIn)

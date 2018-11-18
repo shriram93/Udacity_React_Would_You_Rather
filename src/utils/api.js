@@ -1,0 +1,29 @@
+import {
+  _getUsers,
+  _getQuestions,
+  _saveQuestionAnswer,
+  _saveQuestion
+} from './_DATA';
+
+export function getInitialData() {
+  return Promise.all([
+    _getUsers(),
+    _getQuestions(),
+  ]).then(([users, questions]) => ({
+    users,
+    questions,
+  }))
+}
+
+export function saveAnswerQuestionApi({ authedUser, questionId, answerOption }) {
+  const userAnswer = {
+    authedUser,
+    qid: questionId,
+    answer: answerOption
+  }
+  return _saveQuestionAnswer(userAnswer)
+}
+
+export function saveNewQuestionApi(question) {
+  return _saveQuestion(question)
+}

@@ -1,0 +1,13 @@
+.question-preview {
+  width: 100%;
+  margin-top: 1rem;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  &__header {
+    text-align: left;
+    padding-left: 1rem;
+  }
+}

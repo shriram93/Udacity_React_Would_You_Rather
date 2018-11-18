@@ -1,0 +1,25 @@
+.home {
+  .custom__panel__header {
+    padding: 0;
+
+    .tabs {
+      .tab {
+        text-transform: none;
+
+        a {
+          color: #49ADA3;
+
+          &:focus,
+          &:focus.active {
+            background-color: rgba(73, 173, 163, 0.2);
+          }
+        }
+      }
+
+      .indicator {
+        background-color: #49ADA3;
+      }
+
+    }
+  }
+}

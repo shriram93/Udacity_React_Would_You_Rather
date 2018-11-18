@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.scss'
 import './common-styles.scss'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Route, Switch, withRouter,Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handeInitialData } from './store/actions/shared'
 import 'materialize-css/dist/css/materialize.min.css'
@@ -29,6 +29,7 @@ class WouldYouRatherApp extends Component {
           <PrivateRoute path='/add' component={AddQuestion} />
           <PrivateRoute path='/questions/:questionid' component={Questions} />
           <PrivateRoute path='/leaderboard' component={Leaderboard} />
+          <Route render={() => <Redirect to="/" />} />
         </Switch>
       </div>
     );

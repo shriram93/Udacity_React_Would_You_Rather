@@ -11,12 +11,12 @@ const Navbar = (props) => {
 			<nav>
 				<div className="nav-wrapper">
 					<div className="container">
-						<ul id="nav-mobile" className="left hide-on-med-and-down">
+						<ul id="nav-mobile" className="left">
 							<li><NavLink exact to="/" activeClassName="active">Home</NavLink></li>
 							<li><NavLink to='/add' activeClassName="active">New Question</NavLink></li>
 							<li><NavLink to='/leaderboard' activeClassName="active">Leader Board</NavLink></li>
 						</ul>
-						{props.currentUser && <ul id="nav-mobile" className="right hide-on-med-and-down">
+						{props.currentUser && <ul id="nav-mobile" className="right">
 							<li className="user-info">
 								<p className="user-info__name">{`Hello, ${formatUsername(props.currentUser.name)}`}</p>
 								<img className="user-info__avatar" src={`/${props.currentUser.avatarURL}`} alt="user-avatar" />

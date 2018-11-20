@@ -1,0 +1,22 @@
+.page-not-found {
+  .container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    .page-not-found-image {
+      img {
+        width:300px;
+      }
+    }
+    .custom-label--medium {
+      margin: .5rem;
+    }
+    .custom-button {
+      width: 100px;
+    }
+  }
+
+}
